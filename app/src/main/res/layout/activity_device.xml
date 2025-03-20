@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".DeviceActivity">
 
-    <!-- Título -->
     <TextView
         android:id="@+id/tvTitulo"
-        android:layoutv_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mis Dispositivos"
         android:textSize="24sp"
@@ -30,8 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnVincular"
-        android:layout_marginTop="16dp"
-        tools:listitem="@layout/item_dispositivo"/>
+        android:layout_marginTop="16dp"/>
 
     <!-- Botón Vincular Dispositivo -->
     <com.google.android.material.button.MaterialButton
@@ -39,12 +38,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Vincular Dispositivo"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/bebas_neue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
-        android:backgroundTint="#1e3436"
-        />
+        app:backgroundTint="#1e3436"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

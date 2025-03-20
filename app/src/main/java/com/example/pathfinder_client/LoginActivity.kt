@@ -25,7 +25,15 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        loginButton.setOnClickListener {
+            val intent = Intent(this, DeviceActivity::class.java) // Redirigir a Mis Dispositivos
+            startActivity(intent)
+            finish()
+        }
+
         signupText = findViewById(R.id.signupText)
+
+
 
         signupText.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
