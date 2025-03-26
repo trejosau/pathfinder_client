@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#f0f0f0">
+
+    <!-- Botón de regreso -->
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/teal_700"
+        android:padding="8dp"
+        android:text="<- Atrás"
+        android:textColor="@android:color/white" />
+
+    <!-- ComboBox (Spinner) para seleccionar la velocidad -->
+    <Spinner
+        android:id="@+id/spinner_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:padding="8dp" />
+
+    <!-- Contenedor del Joystick en forma de cruz -->
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:padding="8dp"
+        android:background="#dddddd"
+        android:layout_marginTop="20dp"
+        android:clipToPadding="false">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="▲"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/teal_700" />
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="◀"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/teal_700" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="▶"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/teal_700" />
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="▼"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/teal_700" />
+    </GridLayout>
+</LinearLayout>
