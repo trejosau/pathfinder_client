@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mi carro #1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Histórico de Lecturas"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:useDefaultMargins="true">
+
+        <TextView
+            android:id="@+id/sensorMQ7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Sensor de Gas MQ7"
+            android:padding="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/sensorGPS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="GPS"
+            android:padding="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/sensorMQ4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Sensor de Gas MQ4"
+            android:padding="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/sensorInclinacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Inclinacion"
+            android:padding="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/sensorTempHumedad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Temperatura y Humedad"
+            android:padding="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:gravity="center"/>
+    </GridLayout>
+</LinearLayout>
