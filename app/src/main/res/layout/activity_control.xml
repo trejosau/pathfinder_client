@@ -16,7 +16,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/teal_700"
         android:padding="8dp"
-        android:text="<- Atrás"
+        android:text="Atrás"
         android:textColor="@android:color/white" />
 
     <!-- ComboBox (Spinner) para seleccionar la velocidad -->
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@android:color/white"
+        android:minHeight="48dp"
         android:padding="8dp" />
 
     <!-- Contenedor del Joystick en forma de cruz -->

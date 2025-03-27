@@ -94,7 +94,9 @@ class AddDeviceActivity : AppCompatActivity() {
         val scanResults = wifiManager.scanResults
 
         // Extract network names (SSIDs)
-        val wifiNetworks = scanResults.map { it.SSID }.distinct()
+        val wifiNetworks = scanResults.map { it.SSID.trim('"') }.distinct()
+
+
 
         // Create an adapter for the AutoCompleteTextView
         val adapter = ArrayAdapter(
