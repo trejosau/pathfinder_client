@@ -12,7 +12,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         val videoView = findViewById<VideoView>(R.id.videoView)
-        val videoPath = "android.resource://$packageName/${R.raw.background_video}"
+        val videoPath = "android.resource://$packageName/${R.raw.test_video}"
         val uri = Uri.parse(videoPath)
 
         videoView.setVideoURI(uri)
