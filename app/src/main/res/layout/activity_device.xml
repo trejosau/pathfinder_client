@@ -6,30 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".DeviceActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".features.device.view.DeviceActivity">
 
+    <!-- Título -->
+
+    <!-- Lista de Dispositivos -->
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mis Dispositivos"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/bebas_neue"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/mis_dispositivos"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Lista de Dispositivos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDispositivos"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lista_dispositivos_desc"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnVincular"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Texto para cuando no hay dispositivos -->
+    <TextView
+        android:id="@+id/tvNoDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_dispositivos"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
     <!-- Botón Vincular Dispositivo -->
@@ -37,13 +57,15 @@
         android:id="@+id/btnVincular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Vincular Dispositivo"
+        android:text="@string/vincular_dispositivo"
         android:textColor="@android:color/white"
         android:fontFamily="@font/bebas_neue"
+        android:contentDescription="@string/vincular_dispositivo_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
         app:backgroundTint="#1e3436"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

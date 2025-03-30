@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">pathfinder_client</string>
+    <string name="app_name">Pathfinder</string>
+    <string name="mis_dispositivos">Mis dispositivos</string>
+    <string name="vincular_dispositivo">Vincular dispositivo</string>
+    <string name="vincular_dispositivo_desc">Vincula un dispositivo nuevo</string>
+    <string name="lista_dispositivos_desc">Lista de dispositivos vinculados</string>
+    <string name="no_dispositivos">No hay dispositivos vinculados</string>
 </resources>

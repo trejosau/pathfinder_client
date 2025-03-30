@@ -1,3 +1,5 @@
+package com.example.pathfinder_client.features.main.view
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -27,15 +29,10 @@ class MainLandingActivity : AppCompatActivity() {
         videoView.setVideoURI(videoUri)
         videoView.start()
 
-        // Llamamos a onVideoCompleted() después de 4 segundos
         videoView.postDelayed({
             viewModel.onVideoCompleted()
-        }, 4000)
+        }, 5000)
 
-        // Si el video termina antes o si el usuario salta el video, también se llama a onVideoCompleted()
-        videoView.setOnCompletionListener {
-            viewModel.onVideoCompleted()
-        }
 
         // Observamos la señal para navegar a la siguiente pantalla
         viewModel.navigateToNextScreen.observe(this, Observer { navigate ->
@@ -46,7 +43,7 @@ class MainLandingActivity : AppCompatActivity() {
             }
         })
 
-        // Permitir que el usuario salte el video tocando startText
+        // Permitir que el usuario salte el video tocando
         startText.setOnClickListener {
             viewModel.onVideoCompleted()
         }
