@@ -23,7 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
         android:layout_width="300dp"
@@ -55,6 +54,18 @@
             android:layout_height="497dp"
             android:orientation="vertical"
             android:padding="24dp">
+
+            <!-- Título "Iniciar sesión" -->
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Iniciar sesión"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp" />
 
             <ImageView
                 android:id="@+id/logoImageView"
@@ -118,7 +129,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="¿No tienes cuenta? Regístrate"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="14sp" />
 
             <TextView
