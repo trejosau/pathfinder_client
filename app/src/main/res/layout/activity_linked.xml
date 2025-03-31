@@ -10,54 +10,30 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dispositivo Vinculado"
+        android:text="Dispositivo vinculado"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#000"
-        android:fontFamily="@font/bebas_neue"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Logo -->
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:text='Tu dispositivo "NOMBRE DEL DISPOSITIVO" ha sido vinculado. Ahora puedes verlo en el dashboard principal.'
-        android:textSize="18sp"
         android:textColor="#444"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/bebas_neue"
-    app:layout_constraintTop_toBottomOf="@id/title"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/adviceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consejo"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/bebas_neue"
-    app:layout_constraintTop_toBottomOf="@id/message"
-    app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/advice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No olvides reconectarte a tu red."
         android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/bebas_neue"
-    app:layout_constraintTop_toBottomOf="@id/adviceTitle"
-    app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="350dp"
@@ -67,6 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/advice" />
+        app:layout_constraintTop_toBottomOf="@id/message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

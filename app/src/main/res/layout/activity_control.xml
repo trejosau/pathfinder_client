@@ -7,85 +7,80 @@
     android:padding="16dp"
     android:background="#f0f0f0">
 
-    <!-- Botón de regreso -->
-    <Button
-        android:id="@+id/btn_back"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/teal_700"
-        android:padding="8dp"
-        android:text="Atrás"
-        android:textColor="@android:color/white" />
+        android:text="Control Remoto"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <!-- ComboBox (Spinner) para seleccionar la velocidad -->
-    <Spinner
-        android:id="@+id/spinner_speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/white"
-        android:minHeight="48dp"
-        android:padding="8dp" />
-
-    <!-- Contenedor del Joystick en forma de cruz -->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="3"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:clipToPadding="false"
         android:columnCount="3"
         android:padding="8dp"
-        android:background="#dddddd"
-        android:layout_marginTop="20dp"
-        android:clipToPadding="false">
+        android:rowCount="3">
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_up"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="▲"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/teal_700" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/arr" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="◀"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/teal_700" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/izq" />
 
         <View
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_right"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="▶"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/teal_700" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/der" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_down"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="▼"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/teal_700" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/abaj" />
+
     </GridLayout>
+
 </LinearLayout>

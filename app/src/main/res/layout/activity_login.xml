@@ -5,57 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#1e4346"
     android:padding="16dp"
     tools:context=".features.login.view.LoginActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="107dp">
 
-    <!-- Imagen de fondo -->
-    <ImageView
-        android:id="@+id/backgroundImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/gradientoriginal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animacion3" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/loginCard"
         android:layout_width="410dp"
-        android:layout_height="800dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="220dp"
         android:elevation="8dp"
         app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="497dp"
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Título "Iniciar sesión" -->
             <TextView
                 android:id="@+id/loginTitle"
                 android:layout_width="wrap_content"
@@ -74,7 +51,6 @@
                 android:layout_gravity="center"
                 android:src="@drawable/logo_pathfinder2" />
 
-            <!-- Campo de correo -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
@@ -138,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="¿Olvidaste tu contraseña?"
+                android:text="  ¿Olvidaste tu contraseña?"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="14sp" />
 
