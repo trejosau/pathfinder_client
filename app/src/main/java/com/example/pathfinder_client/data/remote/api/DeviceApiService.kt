@@ -11,4 +11,6 @@ interface DeviceApiService {
         @Path("userId") userId: String,
         @Header("Authorization") token: String
     ): DeviceResponse
+
+
 }

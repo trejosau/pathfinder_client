@@ -78,8 +78,8 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:src="@drawable/baseline_co2_24"
-                        android:tint="#004643"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        app:tint="#004643" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -110,8 +110,8 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:src="@android:drawable/ic_dialog_map"
-                        android:tint="#004643"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        app:tint="#004643" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_gas"                        android:tint="#004643"
+                        android:src="@drawable/ic_gas"
                         android:layout_marginBottom="8dp"/>
 
                     <TextView
@@ -172,8 +172,9 @@
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_inclinacion"                        android:tint="#004643"
-                        android:layout_marginBottom="8dp"/>
+                        android:src="@drawable/ic_inclinacion"
+                        android:layout_marginBottom="8dp"
+                        app:tint="#004643" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -203,9 +204,9 @@
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_humedad"                        android:tint="#004643"
-                        android:tint="#004643"
-                        android:layout_marginBottom="8dp"/>
+                        android:src="@drawable/ic_humedad"
+                        android:layout_marginBottom="8dp"
+                        app:tint="#004643" />
 
                     <TextView
                         android:layout_width="wrap_content"

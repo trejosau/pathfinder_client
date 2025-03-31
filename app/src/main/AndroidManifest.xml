@@ -1,10 +1,16 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Android 12 (API >=31)  -->
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -16,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pathfinder_client"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        >
 
         <activity
             android:name=".features.main.view.MainLandingActivity"
@@ -41,6 +47,20 @@
         <activity
             android:name="com.example.pathfinder_client.features.device.view.DeviceActivity"
             android:exported="true" />
+
+        <activity
+            android:name="com.example.pathfinder_client.features.device.view.AddActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.example.pathfinder_client.features.device.view.ConnectingActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.example.pathfinder_client.features.device.view.WifiActivity"
+            android:exported="true" />
+
+
 
 
     </application>

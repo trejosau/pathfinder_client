@@ -1,5 +1,6 @@
 package com.example.pathfinder_client.features.device.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.example.pathfinder_client.data.repositories.device.DeviceRepository
 import com.example.pathfinder_client.databinding.ActivityDeviceBinding
 import com.example.pathfinder_client.features.device.viewmodel.DeviceViewModel
 import com.example.pathfinder_client.features.device.viewmodel.DeviceViewModelFactory
+import com.example.pathfinder_client.features.device.view.AddActivity
 
 class DeviceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDeviceBinding
@@ -90,6 +92,7 @@ class DeviceActivity : AppCompatActivity() {
     }
 
     private fun openDevicePairingScreen() {
-        Toast.makeText(this, "Vincular Dispositivo", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, AddActivity::class.java)
+        startActivity(intent)
     }
 }

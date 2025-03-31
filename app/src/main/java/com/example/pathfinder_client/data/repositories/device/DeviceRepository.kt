@@ -31,7 +31,7 @@ class DeviceRepository(
                 Result.failure(e)
             }
         } else {
-            Result.failure(Exception("No user ID or token found. Please log in."))
+            Result.failure(Exception("Usuario no autenticado. Por favor, inicia sesión."))
         }
     }
 }

@@ -22,22 +22,6 @@ class PreferencesManager(context: Context) {
         return prefs.getString(KEY_USER_ID, null)
     }
 
-    fun saveUserEmail(email: String) {
-        prefs.edit { putString(KEY_USER_EMAIL, email) }
-    }
-
-    fun getUserEmail(): String? {
-        return prefs.getString(KEY_USER_EMAIL, null)
-    }
-
-    fun saveUsername(username: String) {
-        prefs.edit { putString(KEY_USERNAME, username) }
-    }
-
-    fun getUsername(): String? {
-        return prefs.getString(KEY_USERNAME, null)
-    }
-
     fun clearSession() {
         prefs.edit {
             remove(KEY_TOKEN)
