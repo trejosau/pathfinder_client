@@ -20,11 +20,28 @@ class WifiConnectionManager(private val context: Context) {
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     suspend fun connectToWifi(ssid: String, password: String): Boolean {
+        // Primero verificamos si ya estamos conectados a esta red
+        val currentSsid = getCurrentSsid()
+        if (currentSsid == ssid) {
+            return true
+        }
+
+        // Si no estamos conectados, intentamos la conexión
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             connectToWifiApi29(ssid, password)
         } else {
             false
         }
+    }
+
+    private fun getCurrentSsid(): String? {
+        val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInfo = wifiManager.connectionInfo
+
+        val ssid = wifiInfo?.ssid
+
+        // El SSID suele venir con comillas, las quitamos
+        return ssid?.replace("\"", "")
     }
 
     private suspend fun connectToWifiApi29(ssid: String, password: String): Boolean {

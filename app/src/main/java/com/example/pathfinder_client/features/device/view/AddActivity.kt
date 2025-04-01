@@ -1,7 +1,6 @@
 package com.example.pathfinder_client.features.device.view
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.pathfinder_client.core.utils.ConnectionStatus
 import com.example.pathfinder_client.databinding.ActivityAddBinding
 import com.example.pathfinder_client.features.device.viewmodel.AddViewModel
 
@@ -127,37 +125,5 @@ class AddActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-
-
-        // Observar el estado de la conexión
-        viewModel.connectionStatus.observe(this) { status ->
-            when (status) {
-                is ConnectionStatus.Loading -> showLoading()
-                is ConnectionStatus.Success -> showSuccess(status.message)
-                is ConnectionStatus.Error -> showError(status.message)
-            }
-        }
-    }
-
-    private fun showLoading() {
-        binding.connectButton.isEnabled = false
-        Toast.makeText(this, "Conectando...", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showSuccess(message: String) {
-        binding.connectButton.isEnabled = true
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-
-        // Navegar a la actividad que muestra el layout de conexión
-        val intent = Intent(this, ConnectingActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun showError(message: String) {
-        binding.connectButton.isEnabled = true
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

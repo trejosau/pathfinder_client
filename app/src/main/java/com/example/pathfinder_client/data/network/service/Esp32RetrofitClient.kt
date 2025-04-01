@@ -1,15 +1,16 @@
 package com.example.pathfinder_client.data.network.service
 
-import com.example.pathfinder_client.data.remote.api.AuthApiService
-import com.example.pathfinder_client.data.remote.api.DeviceApiService
+import com.example.pathfinder_client.data.remote.api.WifiApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+object ESP32RetrofitClient {
 
-    private const val BASE_URL = "http://192.168.137.30:6655/api/v1/"
+    private const val BASE_URL = "http://192.168.4.1:8090/"
+
+
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -25,6 +26,5 @@ object RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val authApiService: AuthApiService = retrofit.create(AuthApiService::class.java)
-    val deviceApiService: DeviceApiService = retrofit.create(DeviceApiService::class.java)
+    val wifiApiService: WifiApiService = retrofit.create(WifiApiService::class.java)
 }
