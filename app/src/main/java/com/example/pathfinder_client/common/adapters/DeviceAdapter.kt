@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder_client.data.remote.dto.device.Device
 import com.example.pathfinder_client.databinding.ItemDeviceBinding
 
-class DeviceAdapter : ListAdapter<Device, DeviceAdapter.DeviceViewHolder>(DeviceDiffCallback()) {
+class DeviceAdapter(
+    private val onDeviceClicked: ((Device) -> Unit)? = null
+) : ListAdapter<Device, DeviceAdapter.DeviceViewHolder>(DeviceDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
         val binding = ItemDeviceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,9 +23,14 @@ class DeviceAdapter : ListAdapter<Device, DeviceAdapter.DeviceViewHolder>(Device
         holder.bind(getItem(position))
     }
 
-    class DeviceViewHolder(private val binding: ItemDeviceBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class DeviceViewHolder(private val binding: ItemDeviceBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(device: Device) {
             binding.tvDeviceName.text = device.name
+
+            // Configurar el clic en el elemento para invocar el callback
+            binding.root.setOnClickListener {
+                onDeviceClicked?.invoke(device)
+            }
         }
     }
 
