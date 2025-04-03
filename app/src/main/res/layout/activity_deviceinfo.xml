@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Nombre del Dispositivo -->
     <TextView
         android:id="@+id/deviceName"
         android:layout_width="wrap_content"
