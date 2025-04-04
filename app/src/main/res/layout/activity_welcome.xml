@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/logoImageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:src="@drawable/mineriq2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintWidth_percent="0.6"
@@ -42,11 +42,13 @@
             android:layout_height="wrap_content"
             android:text="Información en tiempo real de tu casco minero"
             android:textColor="@android:color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/logoImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/bebas_neue"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

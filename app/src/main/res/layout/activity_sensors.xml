@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.sensors.view.SensorsActivity">
+    tools:context=".features.sensors.view.SensorsActivity"
+    android:background="#1D1F2F">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -14,6 +15,7 @@
         android:text="MinerIQ Sensors"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#FDB827"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,20 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Status: Connecting..."
-        android:textColor="#757575"
+        android:textColor="#FDB827"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
-    <Button
-        android:id="@+id/refreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Refresh Data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/connectionStatusText" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sensorRecyclerView"
@@ -49,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/refreshButton"
+        app:layout_constraintTop_toBottomOf="@id/connectionStatusText"
         tools:listitem="@layout/item_sensor_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

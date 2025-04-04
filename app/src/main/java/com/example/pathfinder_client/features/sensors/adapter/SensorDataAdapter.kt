@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder_client.R
 import com.example.pathfinder_client.data.models.SensorData
 import java.text.SimpleDateFormat
+import org.json.JSONObject
 import java.util.*
 
 class SensorDataAdapter : RecyclerView.Adapter<SensorDataAdapter.SensorViewHolder>() {
@@ -48,7 +49,10 @@ class SensorDataAdapter : RecyclerView.Adapter<SensorDataAdapter.SensorViewHolde
             when (sensor.type) {
                 "temperature" -> sensorValueText.text = String.format("%.1f°C", sensor.value)
                 "humidity" -> sensorValueText.text = String.format("%.1f%%", sensor.value)
-                "gps" -> sensorValueText.text = "Lat/Long" // In a real app, you'd show both values
+                "gps" -> {
+                    // Directly use the toGpsString() method, which now extracts lat/long correctly
+                    sensorValueText.text = sensor.toGpsString()
+                }
                 else -> sensorValueText.text = String.format("%.2f %s", sensor.value, sensor.unit)
             }
 
@@ -58,3 +62,4 @@ class SensorDataAdapter : RecyclerView.Adapter<SensorDataAdapter.SensorViewHolde
         }
     }
 }
+

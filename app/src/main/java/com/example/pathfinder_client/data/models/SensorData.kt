@@ -6,9 +6,11 @@ import java.util.*
 
 data class SensorData(
     val type: String,
-    val value: Double,
-    val unit: String,
-    val timestamp: Date
+    val value: Double,  // Usado para la latitud o un valor de sensor
+    val unit: String,   // Usado para la longitud o la unidad
+    val timestamp: Date,
+    val latitude: Double,  // Nueva propiedad para almacenar latitud
+    val longitude: Double  // Nueva propiedad para almacenar longitud
 ) {
     companion object {
         fun fromJson(topic: String, json: JSONObject): SensorData {
@@ -29,27 +31,31 @@ data class SensorData(
 
             // Parse value (handling special case for GPS which might have lat/long)
             val value = if (sensorType == "gps") {
-                // For simplicity, we're just taking the first value for GPS,
-                // but you might want to handle lat/long differently
-                if (json.has("latitude")) json.getDouble("latitude") else 0.0
+                // For simplicity, we assume that "lat" and "lng" exist in JSON
+                val latitude = if (json.has("lat")) json.getDouble("lat") else 0.0
+                val longitude = if (json.has("lng")) json.getDouble("lng") else 0.0
+                SensorData(
+                    type = sensorType,
+                    value = latitude,  // Store lat in value for consistency with your logic
+                    unit = unit,
+                    timestamp = Date(),
+                    latitude = latitude,  // Store lat separately
+                    longitude = longitude  // Store lng separately
+                )
             } else {
-                if (json.has("value")) json.getDouble("value") else 0.0
+                // Handle non-GPS sensor data
+                val sensorValue = if (json.has("value")) json.getDouble("value") else 0.0
+                SensorData(
+                    type = sensorType,
+                    value = sensorValue,
+                    unit = unit,
+                    timestamp = Date(),
+                    latitude = 0.0,  // No GPS data
+                    longitude = 0.0  // No GPS data
+                )
             }
 
-            // Parse timestamp if available, or use current time
-            val timestamp = if (json.has("timestamp")) {
-                try {
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
-                    dateFormat.timeZone = TimeZone.getTimeZone("UTC")
-                    dateFormat.parse(json.getString("timestamp")) ?: Date()
-                } catch (e: Exception) {
-                    Date()
-                }
-            } else {
-                Date()
-            }
-
-            return SensorData(sensorType, value, unit, timestamp)
+            return value  // This is the required return statement
         }
     }
 
@@ -59,10 +65,7 @@ data class SensorData(
     }
 
     // For GPS data specifically
-    fun toGpsString(json: JSONObject): String {
-        val latitude = if (json.has("latitude")) json.getDouble("latitude") else 0.0
-        val longitude = if (json.has("longitude")) json.getDouble("longitude") else 0.0
-        val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
-        return "GPS: Lat $latitude, Long $longitude (${dateFormat.format(timestamp)})"
+    fun toGpsString(): String {
+        return "  Lat $latitude, Long $longitude"
     }
 }

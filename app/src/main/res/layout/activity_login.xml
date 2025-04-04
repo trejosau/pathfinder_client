@@ -100,20 +100,6 @@
                 android:text="¿No tienes cuenta? Regístrate"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="14sp" />
-
-            <!-- Boton para ir al sensors activity -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sensorsButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Ir a Sensores"
-                android:textColor="@android:color/white"
-                app:backgroundTint="#1D1F2F "
-                app:cornerRadius="8dp" />
-
-
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
