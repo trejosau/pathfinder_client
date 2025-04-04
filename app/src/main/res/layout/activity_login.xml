@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1e4346"
+    android:background="#1D1F2F"
     android:padding="16dp"
     tools:context=".features.login.view.LoginActivity">
 
@@ -40,10 +40,10 @@
 
             <ImageView
                 android:id="@+id/logoImageView"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo_pathfinder2" />
+                android:src="@drawable/mineriq2" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTextInputLayout"
@@ -84,7 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Iniciar sesión"
                 android:textColor="@android:color/white"
-                app:backgroundTint="#1e4643"
+                app:backgroundTint="#121420 "
                 app:cornerRadius="8dp" />
 
             <TextView
