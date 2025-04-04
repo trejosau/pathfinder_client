@@ -31,11 +31,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val forgotPasswordText = findViewById<TextView>(R.id.forgotPasswordText)
-        forgotPasswordText.setOnClickListener {
-            val intent = Intent(this, ForgotPasswordActivity::class.java)
-            startActivity(intent)
-        }
 
         val emailEditText = findViewById<TextInputEditText>(R.id.emailEditText)
         val passwordEditText = findViewById<TextInputEditText>(R.id.passwordEditText)
