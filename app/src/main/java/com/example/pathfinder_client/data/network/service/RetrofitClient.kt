@@ -1,7 +1,6 @@
 package com.example.pathfinder_client.data.network.service
 
 import com.example.pathfinder_client.data.remote.api.AuthApiService
-import com.example.pathfinder_client.data.remote.api.DeviceApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
