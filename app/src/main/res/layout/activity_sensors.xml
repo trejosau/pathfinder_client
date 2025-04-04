@@ -121,11 +121,7 @@
                         android:gravity="center"
                         android:layout_marginTop="4dp">
 
-                        <ImageView
-                            android:id="@+id/iv_mq7_trend"
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            app:tint="#4CAF50"/>
+
 
                         <TextView
                             android:id="@+id/tv_mq7_trend"
