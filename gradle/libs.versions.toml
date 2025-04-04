@@ -14,6 +14,9 @@ coroutines = "1.8.1"
 junit = "4.13.2"
 androidxJunit = "1.1.5"
 espresso = "3.5.1"
+socketio = "2.1.0"
+json = "20210307"
+
 
 # Versiones de librerías
 appcompat = "1.7.0"
@@ -44,6 +47,8 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+socketio-client = { group = "io.socket", name = "socket.io-client", version.ref = "socketio" }
+json-lib = { group = "org.json", name = "json", version.ref = "json" }
 
 # Coroutines
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }

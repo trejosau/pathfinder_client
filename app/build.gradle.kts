@@ -50,4 +50,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("io.socket:socket.io-client:2.1.0")
+    implementation("org.json:json:20210307")
 }

@@ -23,6 +23,11 @@
         android:usesCleartextTraffic="true"
         >
 
+        <service
+            android:name=".data.network.socket.SocketService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".features.main.view.MainLandingActivity"
             android:exported="true"

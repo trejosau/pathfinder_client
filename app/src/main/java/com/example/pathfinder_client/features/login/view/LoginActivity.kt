@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         val emailEditText = findViewById<TextInputEditText>(R.id.emailEditText)
         val passwordEditText = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<MaterialButton>(R.id.loginButton)
+        val sensorsButton = findViewById<MaterialButton>(R.id.sensorsButton)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -44,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        sensorsButton.setOnClickListener {
+            val intent = Intent(this, SensorsActivity::class.java)
+            startActivity(intent)
         }
 
         loginViewModel.loginResult.observe(this, Observer { result ->
