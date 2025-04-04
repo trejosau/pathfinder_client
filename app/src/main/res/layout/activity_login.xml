@@ -84,7 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Iniciar sesión"
                 android:textColor="@android:color/white"
-                app:backgroundTint="#121420 "
+                app:backgroundTint="#1D1F2F "
                 app:cornerRadius="8dp" />
 
             <TextView
