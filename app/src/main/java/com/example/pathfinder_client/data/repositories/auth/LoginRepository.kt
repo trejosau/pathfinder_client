@@ -2,9 +2,9 @@ package com.example.pathfinder_client.data.repositories.auth
 
 import android.content.Context
 import com.example.pathfinder_client.data.local.preferences.PreferencesManager
-import com.example.pathfinder_client.data.network.service.RetrofitClient
 import com.example.pathfinder_client.data.remote.dto.auth.LoginRequest
 import com.example.pathfinder_client.data.remote.dto.auth.LoginResponse
+import com.example.pathfinder_client.data.network.service.RetrofitClient
 
 class LoginRepository(private val context: Context) {
     private val preferencesManager = PreferencesManager(context)

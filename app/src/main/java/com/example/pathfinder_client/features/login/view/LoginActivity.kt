@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import android.content.Intent
 import android.widget.TextView
 import com.example.pathfinder_client.features.register.view.RegisterActivity
+import com.example.pathfinder_client.features.sensors.view.SensorsActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -34,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = findViewById<MaterialButton>(R.id.loginButton)
 
-        // Listener para el botón de login
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -46,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Observamos el resultado del login
         loginViewModel.loginResult.observe(this, Observer { result ->
             result.fold(
                 onSuccess = { response ->

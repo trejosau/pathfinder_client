@@ -25,5 +25,4 @@ object RetrofitClient {
         .build()
 
     val authApiService: AuthApiService = retrofit.create(AuthApiService::class.java)
-    val deviceApiService: DeviceApiService = retrofit.create(DeviceApiService::class.java)
 }
