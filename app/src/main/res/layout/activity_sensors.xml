@@ -68,6 +68,7 @@
             android:columnCount="2"
             android:useDefaultMargins="true">
 
+            <!-- Tarjeta MQ7 mejorada -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_sensor_mq7"
                 android:layout_width="0dp"
@@ -100,9 +101,46 @@
                         android:text="Sensor de Gas MQ7"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
+
+                    <!-- Valor actual del sensor -->
+                    <TextView
+                        android:id="@+id/tv_mq7_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45 ppm"
+                        android:textColor="#4CAF50"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+
+                    <!-- Indicador de tendencia -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/iv_mq7_trend"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_trend_up"
+                            app:tint="#4CAF50"/>
+
+                        <TextView
+                            android:id="@+id/tv_mq7_trend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+5%"
+                            android:textColor="#4CAF50"
+                            android:textSize="12sp"
+                            android:layout_marginStart="4dp"/>
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Tarjeta GPS mejorada -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_sensor_gps"
                 android:layout_width="0dp"
@@ -135,9 +173,30 @@
                         android:text="GPS"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
+
+                    <!-- Coordenadas actuales -->
+                    <TextView
+                        android:id="@+id/tv_gps_coordinates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19.4326° N, 99.1332° W"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp"/>
+
+                    <!-- Status conexión -->
+                    <TextView
+                        android:id="@+id/tv_gps_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Señal Buena"
+                        android:textColor="#4CAF50"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Tarjeta MQ4 mejorada -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_sensor_mq4"
                 android:layout_width="0dp"
@@ -170,9 +229,31 @@
                         android:text="Sensor de Gas MQ4"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
+
+                    <!-- Valor actual del sensor -->
+                    <TextView
+                        android:id="@+id/tv_mq4_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="120 ppm"
+                        android:textColor="#FF5252"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+
+                    <!-- Valor máximo -->
+                    <TextView
+                        android:id="@+id/tv_mq4_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Máximo: 140 ppm"
+                        android:textColor="#A7A9AC"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Tarjeta Inclinación mejorada -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_sensor_inclinacion"
                 android:layout_width="0dp"
@@ -185,29 +266,82 @@
                 app:strokeWidth="2dp"
                 android:backgroundTint="#121420">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="158dp"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center">
+                    android:padding="-5dp">
 
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/ic_inclinacion"
                         android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_inclinacion"
                         app:tint="#FDB827" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inclinacion"
+                        android:text="Inclinación"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
+                    <!-- Valores de inclinación -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X:"
+                            android:textColor="#A7A9AC" />
+
+                        <TextView
+                            android:id="@+id/tv_inclinacion_x"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 5.2°"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text=" Y:"
+                            android:textColor="#A7A9AC" />
+
+                        <TextView
+                            android:id="@+id/tv_inclinacion_y"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 2.1°"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+
+                    <!-- Indicador visual de inclinación -->
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/inclinacion_background">
+
+                        <View
+                            android:id="@+id/view_inclinacion_indicator"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/inclinacion_indicator" />
+                    </FrameLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Tarjeta Temperatura y Humedad mejorada -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_sensor_temp_humedad"
                 android:layout_width="0dp"
@@ -241,6 +375,69 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:gravity="center"/>
+
+                    <!-- Valores actuales -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_temperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="28°C"
+                                android:textColor="#FF5252"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Temperatura"
+                                android:textColor="#A7A9AC"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:background="#A7A9AC"
+                            android:layout_marginHorizontal="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_humidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="85%"
+                                android:textColor="#2196F3"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Humedad"
+                                android:textColor="#A7A9AC"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
