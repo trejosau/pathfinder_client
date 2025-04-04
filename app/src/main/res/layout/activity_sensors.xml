@@ -125,7 +125,6 @@
                             android:id="@+id/iv_mq7_trend"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_trend_up"
                             app:tint="#4CAF50"/>
 
                         <TextView
