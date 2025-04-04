@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F5E9">
+    android:background="#1D1F2F">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_header"
@@ -16,32 +16,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="#004643">
+        android:backgroundTint="#121420">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
 
-            <TextView
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/miner_helmet"
+                android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mi carro #1"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Histórico de Lecturas"
-                android:textColor="#E0E0E0"
-                android:textSize="18sp"
-                android:layout_marginTop="8dp"
-                android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MINER-IQ"
+                    android:textColor="#FDB827"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Histórico de Lecturas"
+                    android:textColor="#A7A9AC"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -65,7 +75,10 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:strokeColor="#FDB827"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#121420">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,13 +92,13 @@
                         android:layout_height="48dp"
                         android:src="@drawable/baseline_co2_24"
                         android:layout_marginBottom="8dp"
-                        app:tint="#004643" />
+                        app:tint="#FDB827" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sensor de Gas MQ7"
-                        android:textColor="#004643"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -97,7 +110,10 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:strokeColor="#FDB827"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#121420">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,13 +127,13 @@
                         android:layout_height="48dp"
                         android:src="@android:drawable/ic_dialog_map"
                         android:layout_marginBottom="8dp"
-                        app:tint="#004643" />
+                        app:tint="#FDB827" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GPS"
-                        android:textColor="#004643"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -129,7 +145,10 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:strokeColor="#FDB827"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#121420">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,13 +161,14 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:src="@drawable/ic_gas"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        app:tint="#FDB827"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sensor de Gas MQ4"
-                        android:textColor="#004643"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -160,7 +180,10 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:strokeColor="#FDB827"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#121420">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,13 +197,13 @@
                         android:layout_height="48dp"
                         android:src="@drawable/ic_inclinacion"
                         android:layout_marginBottom="8dp"
-                        app:tint="#004643" />
+                        app:tint="#FDB827" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Inclinacion"
-                        android:textColor="#004643"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -192,7 +215,10 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:strokeColor="#FDB827"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#121420">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,13 +232,13 @@
                         android:layout_height="48dp"
                         android:src="@drawable/ic_humedad"
                         android:layout_marginBottom="8dp"
-                        app:tint="#004643" />
+                        app:tint="#FDB827" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Temperatura y Humedad"
-                        android:textColor="#004643"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:gravity="center"/>
                 </LinearLayout>
