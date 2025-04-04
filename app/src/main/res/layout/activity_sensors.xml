@@ -324,20 +324,7 @@
                             android:textColor="#FFFFFF" />
                     </LinearLayout>
 
-                    <!-- Indicador visual de inclinación -->
-                    <FrameLayout
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/inclinacion_background">
 
-                        <View
-                            android:id="@+id/view_inclinacion_indicator"
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/inclinacion_indicator" />
-                    </FrameLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
