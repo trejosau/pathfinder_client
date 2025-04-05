@@ -46,4 +46,20 @@
         app:layout_constraintTop_toBottomOf="@id/connectionStatusText"
         tools:listitem="@layout/item_sensor_data" />
 
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FDB827"
+        android:textStyle="bold"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="4dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

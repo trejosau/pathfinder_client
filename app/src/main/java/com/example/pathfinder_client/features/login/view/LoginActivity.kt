@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 },
                 onFailure = { error ->
-                    Toast.makeText(this, "Error en el login: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                 }
             )
         })

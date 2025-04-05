@@ -48,6 +48,10 @@
             android:name=".features.sensors.view.SensorsActivity"
             android:exported="true"
             />
+        <activity
+            android:name=".features.home.view.HomeActivity"
+            android:exported="true"
+            />
 
 
     </application>
