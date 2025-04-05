@@ -2,43 +2,63 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="64dp"
-    android:layout_height="64dp"
-    android:layout_marginBottom="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
     app:cardBackgroundColor="#1D1F2F">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/teamInitialTextView"
-            android:layout_width="wrap_content"
+            android:id="@+id/teamNameTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="#FDB827"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnAddHelmet"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="T1" />
+            tools:text="Equipo 1" />
 
         <TextView
             android:id="@+id/teamHelmetCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_notification_overlay"
-            android:gravity="center"
-            android:minWidth="16dp"
-            android:minHeight="16dp"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp"
+            android:layout_marginTop="4dp"
+            android:textColor="#FDB827"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/teamNameTextView"
+            tools:text="Cascos: 3/6" />
+
+        <ImageButton
+            android:id="@+id/btnAddHelmet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Agregar casco"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_input_add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="3" />
+            app:tint="#FDB827" />
+
+        <!-- RecyclerView para mostrar la lista de cascos del equipo -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/helmetsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/teamHelmetCountTextView"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_helmet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

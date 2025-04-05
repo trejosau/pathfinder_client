@@ -47,17 +47,39 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/teamNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Equipo: "
+            android:textColor="#FDB827"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/helmetIdInputLayout" />
+
+        <TextView
+            android:id="@+id/selectedTeamNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FDB827"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/teamNameTextView"
+            app:layout_constraintTop_toTopOf="@id/teamNameTextView"
+            tools:text="Equipo 1" />
+
+        <TextView
             android:id="@+id/helmetIdHintText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:text="El ID se encuentra en la parte trasera del casco"
             android:textColor="#FDB827"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/helmetIdInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/teamNameTextView" />
 
         <Button
             android:id="@+id/btnCancelAddHelmet"
