@@ -11,6 +11,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import android.content.Intent
 import android.widget.TextView
+import com.example.pathfinder_client.features.home.view.HomeActivity
 import com.example.pathfinder_client.features.register.view.RegisterActivity
 import com.example.pathfinder_client.features.sensors.view.SensorsActivity
 
@@ -50,7 +51,9 @@ class LoginActivity : AppCompatActivity() {
                 onSuccess = { response ->
                     val username = response.data.user.username
                     Toast.makeText(this, "Bienvenido $username", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, SensorsActivity::class.java))
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.putExtra("username", username)
+                    startActivity(intent)
                     finish()
                 },
                 onFailure = { error ->
