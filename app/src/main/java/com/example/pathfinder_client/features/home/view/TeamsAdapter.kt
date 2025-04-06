@@ -11,28 +11,8 @@ import com.example.pathfinder_client.R
 
 class TeamsAdapter(
     private val teams: List<TeamModel>,
-    private val onAddHelmetClick: (TeamModel) -> Unit
+    private val onAddHelmetClicked: (TeamModel) -> Unit
 ) : RecyclerView.Adapter<TeamsAdapter.TeamViewHolder>() {
-
-    inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val teamNameTextView: TextView = itemView.findViewById(R.id.teamNameTextView)
-        private val teamHelmetCountTextView: TextView = itemView.findViewById(R.id.teamHelmetCountTextView)
-        private val helmetsRecyclerView: RecyclerView = itemView.findViewById(R.id.helmetsRecyclerView)
-        private val btnAddHelmet: ImageButton = itemView.findViewById(R.id.btnAddHelmet)
-
-        fun bind(team: TeamModel) {
-            teamNameTextView.text = team.name
-            teamHelmetCountTextView.text = "Cascos: ${team.helmets.size}/6"
-
-            // Configurar el adaptador de cascos
-            helmetsRecyclerView.layoutManager = LinearLayoutManager(itemView.context)
-            helmetsRecyclerView.adapter = HelmetsAdapter(team.helmets)
-
-            btnAddHelmet.setOnClickListener {
-                onAddHelmetClick(team)
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -45,4 +25,23 @@ class TeamsAdapter(
     }
 
     override fun getItemCount(): Int = teams.size
+
+    inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val teamNameTextView: TextView = itemView.findViewById(R.id.teamNameTextView)
+        private val teamHelmetCountTextView: TextView = itemView.findViewById(R.id.teamHelmetCountTextView)
+        private val btnAddHelmet: ImageButton = itemView.findViewById(R.id.btnAddHelmet)
+        private val helmetsRecyclerView: RecyclerView = itemView.findViewById(R.id.helmetsRecyclerView)
+
+        fun bind(team: TeamModel) {
+            teamNameTextView.text = team.name
+            teamHelmetCountTextView.text = "Cascos: ${team.helmets.size}"
+
+            // Configurar el RecyclerView de cascos dentro de cada equipo
+            helmetsRecyclerView.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            helmetsRecyclerView.adapter = HelmetsAdapter(team.helmets)
+
+            btnAddHelmet.setOnClickListener { onAddHelmetClicked(team) }
+        }
+    }
 }

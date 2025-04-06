@@ -1,6 +1,7 @@
 package com.example.pathfinder_client.data.network.service
 
 import com.example.pathfinder_client.data.remote.api.AuthApiService
+import com.example.pathfinder_client.data.remote.api.DeviceApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,5 +25,6 @@ object RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+    val deviceApiService: DeviceApiService = retrofit.create(DeviceApiService::class.java)
     val authApiService: AuthApiService = retrofit.create(AuthApiService::class.java)
 }
