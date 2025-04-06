@@ -27,8 +27,7 @@ class HelmetsAdapter(private val helmets: List<HelmetModel>) :
         private val helmetStatusTextView: TextView = itemView.findViewById(R.id.helmetStatusTextView)
 
         fun bind(helmet: HelmetModel) {
-            helmetIdTextView.text = helmet.id
-            helmetStatusTextView.text = "Estado: ${helmet.status}"
+            helmetIdTextView.text = helmet.name
         }
     }
 }

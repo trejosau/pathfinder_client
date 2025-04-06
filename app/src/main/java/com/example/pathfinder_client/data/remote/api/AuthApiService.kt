@@ -4,6 +4,8 @@ import com.example.pathfinder_client.data.remote.dto.auth.LoginRequest
 import com.example.pathfinder_client.data.remote.dto.auth.LoginResponse
 import com.example.pathfinder_client.data.remote.dto.auth.RegisterRequest
 import com.example.pathfinder_client.data.remote.dto.auth.RegisterResponse
+import com.example.pathfinder_client.data.remote.dto.auth.TokenRequest
+import com.example.pathfinder_client.data.remote.dto.auth.TokenVerificationResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -15,4 +17,7 @@ interface AuthApiService {
 
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+
+    @POST("auth/verify")
+    suspend fun verifyToken(@Body request: TokenRequest): Response<TokenVerificationResponse>
 }

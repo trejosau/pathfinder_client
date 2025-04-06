@@ -1,3 +1,5 @@
+// HomeActivity.kt (versión limpia sin status)
+
 package com.example.pathfinder_client.features.home.view
 
 import android.content.Intent
@@ -18,6 +20,15 @@ import android.view.View
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.example.pathfinder_client.data.repositories.devices.DeviceRepository
+import com.example.pathfinder_client.features.home.viewmodel.HomeViewModel
+import com.example.pathfinder_client.features.home.viewmodel.HomeViewModelFactory
+import com.example.pathfinder_client.data.local.preferences.PreferencesManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.lifecycle.lifecycleScope
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,56 +37,120 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var teamsCountTextView: TextView
     private lateinit var userNameTextView: TextView
 
-    // Lista temporal para simular equipos
+    private lateinit var viewModel: HomeViewModel
     private val teamsList = mutableListOf<TeamModel>()
-    // Aquí deberías usar un adaptador real
     private lateinit var teamsAdapter: TeamsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Inicializar vistas
         drawerLayout = findViewById(R.id.drawerLayout)
         teamsRecyclerView = findViewById(R.id.teamsRecyclerView)
         teamsCountTextView = findViewById(R.id.teamsCountTextView)
         userNameTextView = findViewById(R.id.userNameTextView)
 
-        // Configurar nombre de usuario desde intent
         val username = intent.getStringExtra("username") ?: "Usuario"
         userNameTextView.text = "Hola, $username"
 
-        // Configurar recyclerView
         teamsRecyclerView.layoutManager = LinearLayoutManager(this)
         teamsAdapter = TeamsAdapter(teamsList, this::onAddHelmetClicked)
         teamsRecyclerView.adapter = teamsAdapter
 
-        // Botón para abrir sidebar
         findViewById<ImageButton>(R.id.btnOpenSidebar).setOnClickListener {
             drawerLayout.open()
         }
 
-        // Botón para cerrar sidebar
         findViewById<ImageButton>(R.id.btnCloseSidebar).setOnClickListener {
             drawerLayout.close()
         }
 
-        // Botón para cerrar sesión
         findViewById<Button>(R.id.btnCerrarSesion).setOnClickListener {
-            // Limpiar sesión si es necesario
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
         }
 
-        // Botón para agregar equipo
         findViewById<FloatingActionButton>(R.id.btnAddTeam).setOnClickListener {
             showAddTeamDialog()
         }
 
-        // Actualizar contador de equipos
         updateTeamsCount()
+
+        val deviceRepository = DeviceRepository()
+        val viewModelFactory = HomeViewModelFactory(deviceRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
+        loadTeamsFromApi()
+    }
+
+    private fun loadTeamsFromApi() {
+        showLoading(true)
+
+        val preferencesManager = PreferencesManager(this)
+        val userId = preferencesManager.getUserId()
+        val token = preferencesManager.getToken()
+
+        if (userId?.isNotEmpty() == true && token?.isNotEmpty() == true) {
+            lifecycleScope.launch {
+                try {
+                    val response = viewModel.getEquipos(userId, token)
+                    if (response.isSuccessful) {
+                        val apiResponse = response.body()
+                        if (apiResponse?.success == true) {
+                            val teams = apiResponse.data.map { teamResponse ->
+                                TeamModel(
+                                    id = teamResponse.id.hashCode(),
+                                    name = teamResponse.name,
+                                    helmets = teamResponse.helmets.map { helmet ->
+                                        HelmetModel(
+                                            id = helmet.device_id,
+                                            name = helmet.name,
+                                        )
+                                    }
+                                )
+                            }
+
+                            withContext(Dispatchers.Main) {
+                                teamsList.clear()
+                                teamsList.addAll(teams)
+                                teamsAdapter.notifyDataSetChanged()
+                                updateTeamsCount()
+                                showLoading(false)
+                            }
+                        } else {
+                            showError("Error: ${apiResponse?.message ?: "Desconocido"}")
+                        }
+                    } else {
+                        showError("Error en la petición: ${response.code()}")
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        showError("Error: ${e.message}")
+                        showLoading(false)
+                    }
+                }
+            }
+        } else {
+            showError("No hay sesión activa")
+            redirectToLogin()
+        }
+    }
+
+    private fun redirectToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        // Mostrar u ocultar indicador de carga
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        showLoading(false)
     }
 
     private fun showAddTeamDialog() {
@@ -83,8 +158,6 @@ class HomeActivity : AppCompatActivity() {
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
-
-        // No necesitamos establecer título ya que está en el layout
 
         val teamNameEditText = dialogView.findViewById<TextInputEditText>(R.id.teamNameEditText)
         val btnCancel = dialogView.findViewById<Button>(R.id.btnCancelAddTeam)
@@ -97,7 +170,6 @@ class HomeActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             val teamName = teamNameEditText.text.toString().trim()
             if (teamName.isNotEmpty()) {
-                // Agregar el equipo (simulado para esta implementación)
                 addTeam(teamName)
                 alertDialog.dismiss()
             } else {
@@ -109,8 +181,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun addTeam(teamName: String) {
-        // En un caso real, esto debería enviar una solicitud al servidor
-        // y actualizar la lista cuando se reciba una respuesta exitosa
         val newTeam = TeamModel(teamsList.size + 1, teamName, emptyList())
         teamsList.add(newTeam)
         teamsAdapter.notifyItemInserted(teamsList.size - 1)
@@ -137,7 +207,6 @@ class HomeActivity : AppCompatActivity() {
         val btnCancel = dialogView.findViewById<Button>(R.id.btnCancelAddHelmet)
         val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirmAddHelmet)
 
-        // Establecer el nombre del equipo seleccionado
         selectedTeamNameTextView.text = team.name
 
         btnCancel.setOnClickListener {
@@ -147,7 +216,6 @@ class HomeActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             val helmetId = helmetIdEditText.text.toString().trim()
             if (helmetId.isNotEmpty()) {
-                // Lógica para vincular el casco (simulada aquí)
                 addHelmetToTeam(team, helmetId)
                 alertDialog.dismiss()
             } else {
@@ -159,11 +227,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun addHelmetToTeam(team: TeamModel, helmetId: String) {
-        // En un caso real, esto enviaría una solicitud al servidor
-        // y actualizaría la lista cuando se reciba una respuesta exitosa
         val teamIndex = teamsList.indexOf(team)
         if (teamIndex != -1) {
-            val helmet = HelmetModel(helmetId, "Conectado")
+            val helmet = HelmetModel(helmetId, "Nuevo Casco")
             val updatedTeam = team.copy(helmets = team.helmets + helmet)
             teamsList[teamIndex] = updatedTeam
             teamsAdapter.notifyItemChanged(teamIndex)
@@ -172,7 +238,7 @@ class HomeActivity : AppCompatActivity() {
     }
 }
 
-// Modelos de datos para esta implementación
+// Modelos de datos sin status
 data class TeamModel(
     val id: Int,
     val name: String,
@@ -181,5 +247,5 @@ data class TeamModel(
 
 data class HelmetModel(
     val id: String,
-    val status: String
+    val name: String
 )
