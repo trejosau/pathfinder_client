@@ -1,3 +1,4 @@
+// TeamsAdapter.kt
 package com.example.pathfinder_client.features.home.view
 
 import android.view.LayoutInflater
@@ -11,7 +12,8 @@ import com.example.pathfinder_client.R
 
 class TeamsAdapter(
     private val teams: List<TeamModel>,
-    private val onAddHelmetClicked: (TeamModel) -> Unit
+    private val onAddHelmetClicked: (TeamModel) -> Unit,
+    private val onHelmetViewClicked: (HelmetModel) -> Unit
 ) : RecyclerView.Adapter<TeamsAdapter.TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
@@ -36,10 +38,10 @@ class TeamsAdapter(
             teamNameTextView.text = team.name
             teamHelmetCountTextView.text = "Cascos: ${team.helmets.size}"
 
-            // Configurar el RecyclerView de cascos dentro de cada equipo
+            // Configuramos el RecyclerView de cascos pasando también el callback para el clic
             helmetsRecyclerView.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            helmetsRecyclerView.adapter = HelmetsAdapter(team.helmets)
+            helmetsRecyclerView.adapter = HelmetsAdapter(team.helmets, onHelmetViewClicked)
 
             btnAddHelmet.setOnClickListener { onAddHelmetClicked(team) }
         }

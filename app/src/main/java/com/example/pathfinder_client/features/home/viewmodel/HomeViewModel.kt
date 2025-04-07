@@ -21,4 +21,12 @@ class HomeViewModel(private val repository: DeviceRepository) : ViewModel() {
     suspend fun getEquipos(userId: String, token: String): Response<ApiResponse<List<TeamResponse>>> {
         return repository.getTeamsByUserId(userId, token)
     }
+
+    suspend fun createTeam(name: String, userId: String, token: String): Response<ApiResponse<TeamResponse>> {
+        return repository.createTeam(name, userId, token)
+    }
+
+    suspend fun linkTeam(deviceId: String, teamId: String, token: String): Response<ApiResponse<Any>> {
+        return repository.linkTeam(deviceId, teamId, token)
+    }
 }

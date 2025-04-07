@@ -1,5 +1,3 @@
-// HomeActivity.kt (versión limpia sin status)
-
 package com.example.pathfinder_client.features.home.view
 
 import android.content.Intent
@@ -13,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder_client.R
 import com.example.pathfinder_client.features.login.view.LoginActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import com.google.android.material.textfield.TextInputEditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +27,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.lifecycle.lifecycleScope
+import com.example.pathfinder_client.features.sensors.view.SensorsActivity
+import org.json.JSONObject
 
 class HomeActivity : AppCompatActivity() {
 
@@ -53,8 +53,13 @@ class HomeActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username") ?: "Usuario"
         userNameTextView.text = "Hola, $username"
 
+
         teamsRecyclerView.layoutManager = LinearLayoutManager(this)
-        teamsAdapter = TeamsAdapter(teamsList, this::onAddHelmetClicked)
+        teamsAdapter = TeamsAdapter(
+            teamsList,
+            this::onAddHelmetClicked,
+            this::onHelmetViewClicked
+        )
         teamsRecyclerView.adapter = teamsAdapter
 
         findViewById<ImageButton>(R.id.btnOpenSidebar).setOnClickListener {
@@ -85,6 +90,27 @@ class HomeActivity : AppCompatActivity() {
         loadTeamsFromApi()
     }
 
+    private fun onHelmetViewClicked(helmet: HelmetModel) {
+        if (helmet.id == "73283888-21a9-4963-8447-0f239d89b6be") {
+            // Navegar a la vista de sensores reales
+            val intent = Intent(this, SensorsActivity::class.java)
+            intent.putExtra("helmet_id", helmet.id)
+            intent.putExtra("helmet_name", helmet.name)
+            startActivity(intent)
+        } else {
+            // Navegar a la vista de sensores simulados (vacía)
+            showSimulatedSensorsDialog(helmet)
+        }
+    }
+
+    private fun showSimulatedSensorsDialog(helmet: HelmetModel) {
+        AlertDialog.Builder(this)
+            .setTitle("Casco Simulado")
+            .setMessage("Este es un casco simulado con ID: ${helmet.id}. No hay datos reales disponibles.")
+            .setPositiveButton("Aceptar", null)
+            .show()
+    }
+
     private fun loadTeamsFromApi() {
         showLoading(true)
 
@@ -101,7 +127,7 @@ class HomeActivity : AppCompatActivity() {
                         if (apiResponse?.success == true) {
                             val teams = apiResponse.data.map { teamResponse ->
                                 TeamModel(
-                                    id = teamResponse.id.hashCode(),
+                                    id = teamResponse.id,
                                     name = teamResponse.name,
                                     helmets = teamResponse.helmets.map { helmet ->
                                         HelmetModel(
@@ -120,14 +146,23 @@ class HomeActivity : AppCompatActivity() {
                                 showLoading(false)
                             }
                         } else {
-                            showError("Error: ${apiResponse?.message ?: "Desconocido"}")
+                            // Mostrar el mensaje de error recibido directamente
+                            showError(apiResponse?.message ?: "Error desconocido")
                         }
                     } else {
-                        showError("Error en la petición: ${response.code()}")
+                        // Extraer el campo "message" del JSON del error
+                        val errorMessage = try {
+                            val errorBody = response.errorBody()?.string()
+                            val jsonError = errorBody?.let { JSONObject(it) }
+                            jsonError?.getString("message") ?: "Error desconocido"
+                        } catch (e: Exception) {
+                            "Error desconocido"
+                        }
+                        showError(errorMessage)
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
-                        showError("Error: ${e.message}")
+                        showError(e.message ?: "Ocurrió un error")
                         showLoading(false)
                     }
                 }
@@ -145,9 +180,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        // Mostrar u ocultar indicador de carga
+        findViewById<ProgressBar>(R.id.progressBar).visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    // Método para mostrar Toast con el mensaje recibido directamente
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         showLoading(false)
@@ -181,11 +217,49 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun addTeam(teamName: String) {
-        val newTeam = TeamModel(teamsList.size + 1, teamName, emptyList())
-        teamsList.add(newTeam)
-        teamsAdapter.notifyItemInserted(teamsList.size - 1)
-        updateTeamsCount()
-        Toast.makeText(this, "Equipo '$teamName' agregado", Toast.LENGTH_SHORT).show()
+        val preferencesManager = PreferencesManager(this)
+        val userId = preferencesManager.getUserId()
+        val token = preferencesManager.getToken()
+
+        if (userId?.isNotEmpty() == true && token?.isNotEmpty() == true) {
+            showLoading(true)
+            lifecycleScope.launch {
+                try {
+                    val response = viewModel.createTeam(teamName, userId, token)
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            val apiResponse = response.body()
+                            if (apiResponse?.success == true) {
+                                // Recargar la lista completa para tener el ID correcto del servidor
+                                loadTeamsFromApi()
+                                Toast.makeText(this@HomeActivity, "Equipo '$teamName' agregado", Toast.LENGTH_SHORT).show()
+                            } else {
+                                showError(apiResponse?.message ?: "Error desconocido")
+                            }
+                        } else {
+                            // Extraer el campo "message" del JSON del error
+                            val errorMessage = try {
+                                val errorBody = response.errorBody()?.string()
+                                val jsonError = errorBody?.let { JSONObject(it) }
+                                jsonError?.getString("message") ?: "Error desconocido"
+                            } catch (e: Exception) {
+                                "Error desconocido"
+                            }
+                            showError(errorMessage)
+                        }
+                        showLoading(false)
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        showError(e.message ?: "Ocurrió un error")
+                        showLoading(false)
+                    }
+                }
+            }
+        } else {
+            showError("No hay sesión activa")
+            redirectToLogin()
+        }
     }
 
     private fun updateTeamsCount() {
@@ -216,7 +290,7 @@ class HomeActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             val helmetId = helmetIdEditText.text.toString().trim()
             if (helmetId.isNotEmpty()) {
-                addHelmetToTeam(team, helmetId)
+                linkHelmetToTeam(team, helmetId)
                 alertDialog.dismiss()
             } else {
                 Toast.makeText(this, "Por favor ingrese el ID del casco", Toast.LENGTH_SHORT).show()
@@ -226,21 +300,58 @@ class HomeActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun addHelmetToTeam(team: TeamModel, helmetId: String) {
-        val teamIndex = teamsList.indexOf(team)
-        if (teamIndex != -1) {
-            val helmet = HelmetModel(helmetId, "Nuevo Casco")
-            val updatedTeam = team.copy(helmets = team.helmets + helmet)
-            teamsList[teamIndex] = updatedTeam
-            teamsAdapter.notifyItemChanged(teamIndex)
-            Toast.makeText(this, "Casco vinculado al equipo ${team.name}", Toast.LENGTH_SHORT).show()
+    private fun linkHelmetToTeam(team: TeamModel, helmetId: String) {
+        showLoading(true)
+        val preferencesManager = PreferencesManager(this)
+        val token = preferencesManager.getToken()
+
+        if (token?.isNotEmpty() == true) {
+            lifecycleScope.launch {
+                try {
+                    val response = viewModel.linkTeam(helmetId, team.id.toString(), token)
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            val apiResponse = response.body()
+                            if (apiResponse?.success == true) {
+                                // Si es exitoso, recargar los equipos para obtener la información actualizada
+                                loadTeamsFromApi()
+                                Toast.makeText(
+                                    this@HomeActivity,
+                                    "Casco vinculado al equipo ${team.name}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                showError(apiResponse?.message ?: "Error desconocido")
+                            }
+                        } else {
+                            val errorMessage = try {
+                                val errorBody = response.errorBody()?.string()
+                                val jsonError = errorBody?.let { JSONObject(it) }
+                                jsonError?.getString("message") ?: "Error desconocido"
+                            } catch (e: Exception) {
+                                "Error desconocido"
+                            }
+                            showError(errorMessage)
+                        }
+                        showLoading(false)
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        showError(e.message ?: "Ocurrió un error")
+                        showLoading(false)
+                    }
+                }
+            }
+        } else {
+            showError("No hay sesión activa")
+            redirectToLogin()
         }
     }
 }
 
 // Modelos de datos sin status
 data class TeamModel(
-    val id: Int,
+    val id: String,
     val name: String,
     val helmets: List<HelmetModel>
 )

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import android.widget.VideoView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,7 @@ class MainLandingActivity : AppCompatActivity() {
             if (isLoggedIn) {
                 // Usuario ya está logueado, ir directamente a siguiente pantalla
                 Log.d(TAG, "Usuario logueado, navegando a Home")
+                showToast("Usuario logueado")
                 navigateToHome()
             } else {
                 // Si no está logueado, espera 4 segundos
@@ -50,6 +52,7 @@ class MainLandingActivity : AppCompatActivity() {
         viewModel.navigateToNextScreen.observe(this) { navigate ->
             if (navigate) {
                 Log.d(TAG, "Navegando a la pantalla de login")
+                showToast("Navegando a login")
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -61,5 +64,10 @@ class MainLandingActivity : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    // Método para mostrar Toast con el mensaje recibido sin prefijos
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
